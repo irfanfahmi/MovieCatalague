@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.descolab.moviecatalague.model.TvShow;
 
-public class DetailTvShow extends AppCompatActivity {
+public class DetailTvShowActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,10 @@ public class DetailTvShow extends AppCompatActivity {
         TextView txtTitle = findViewById(R.id.text_title);
         TextView txtRating = findViewById(R.id.text_rating);
         TextView txtGenre = findViewById(R.id.text_genre);
-        TextView txtYear =  findViewById(R.id.text_year);
-        TextView txtDescription =  findViewById(R.id.text_description);
-        ImageView imgMovies =  findViewById(R.id.image_movie);
-        ImageView imgMovies2 =  findViewById(R.id.image_bg);
+        TextView txtYear = findViewById(R.id.text_year);
+        TextView txtDescription = findViewById(R.id.text_description);
+        ImageView imgMovies = findViewById(R.id.image_movie);
+
 
         TvShow tvshow = getIntent().getParcelableExtra("key_tvshow");
         txtTitle.setText(tvshow.getTitle());
@@ -34,24 +34,22 @@ public class DetailTvShow extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
-        textView.setText(tvshow.getTitle());
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
+            textView.setText(tvshow.getTitle());
+        }
 
-        Log.d("DetailActivity", "onCreate: Cek isi Title "+tvshow.getTitle());
+        Log.d("DetailActivity", "onCreate: Cek isi Title " + tvshow.getTitle());
         Glide
                 .with(this)
                 .load(tvshow.getPicttv())
                 .centerCrop()
                 .into(imgMovies);
-        Glide
-                .with(this)
-                .load(tvshow.getPicttv())
-                .centerCrop()
-                .into(imgMovies2);
+
     }
 
     @Override

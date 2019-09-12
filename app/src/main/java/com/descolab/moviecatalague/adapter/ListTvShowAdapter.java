@@ -12,20 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.descolab.moviecatalague.DetailTvShow;
+import com.descolab.moviecatalague.DetailTvShowActivity;
 import com.descolab.moviecatalague.R;
 import com.descolab.moviecatalague.model.TvShow;
 
 import java.util.ArrayList;
 
 public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.ListTvShowViewHolder> {
-    ArrayList<TvShow> tvShowArrayList;
-
-    Context context;
-
-    public void setListTvShowAdapter(ArrayList<TvShow> tvShow) {
-        this.tvShowArrayList = tvShow;
-    }
+    private ArrayList<TvShow> tvShowArrayList;
+    private Context context;
 
     public ListTvShowAdapter(Context context, ArrayList<TvShow> list) {
         this.context = context;
@@ -60,7 +55,7 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detail = new Intent(context, DetailTvShow.class);
+                Intent detail = new Intent(context, DetailTvShowActivity.class);
                 detail.putExtra("key_tvshow", tvShowArrayList.get(i));
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(detail);
@@ -79,13 +74,13 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
     }
 
     public class ListTvShowViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitle;
-        TextView txtRating;
-        TextView txtGenre;
-        TextView txtYear;
-        TextView txtDescription;
-        ImageView imageViewPhoto;
-        CardView cardViewItem;
+        private TextView txtTitle;
+        private TextView txtRating;
+        private TextView txtGenre;
+        private TextView txtYear;
+        private TextView txtDescription;
+        private ImageView imageViewPhoto;
+        private CardView cardViewItem;
 
         public ListTvShowViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -22,8 +22,8 @@ public class MoviesFragment extends Fragment {
     private String[] dataYear;
     private String[] dataDescription;
     private String[] dataPhoto;
-    ArrayList<Movie> movieArrayList;
-    ListMoviesAdapter adapter;
+    private ArrayList<Movie> movieArrayList;
+    private ListMoviesAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -11,8 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.descolab.moviecatalague.model.Movie;
 
-public class DetailMovies extends AppCompatActivity {
+public class DetailMoviesActivity extends AppCompatActivity {
 
+    Movie movies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +23,9 @@ public class DetailMovies extends AppCompatActivity {
         TextView txtYear = findViewById(R.id.text_year);
         TextView txtDescription = findViewById(R.id.text_description);
         ImageView imgMovies = findViewById(R.id.image_movie);
-        ImageView imgMovies2 = findViewById(R.id.image_bg);
 
 
-        Movie movies = getIntent().getParcelableExtra("key_movies");
+        movies = getIntent().getParcelableExtra("key_movies");
         txtTitle.setText(movies.getTitle());
         txtRating.setText(movies.getRating());
         txtYear.setText(movies.getYear());
@@ -33,25 +33,26 @@ public class DetailMovies extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
-        textView.setText(movies.getTitle());
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
+            textView.setText(movies.getTitle());
+        }
 
-        Log.d("DetailActivity", "onCreate: Cek isi Title "+movies.getTitle());
+
+
+        Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
         Glide
                 .with(this)
                 .load(movies.getPictmovie())
                 .centerCrop()
                 .into(imgMovies);
-        Glide
-                .with(this)
-                .load(movies.getPictmovie())
-                .centerCrop()
-                .into(imgMovies2);
+
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

@@ -2,131 +2,124 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewId"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorBackgroundCardView"
-    android:layout_height="match_parent">
-
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/image_bg"
+        android:id="@+id/image_movie"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginTop="@dimen/layout_marginTop"
+        android:layout_marginRight="@dimen/layout_marginRight"
+        android:scaleType="center"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/toolbar_detail"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_star_yellow_24dp"
+        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
+        card_view:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <TextView
+        android:id="@+id/text_title"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="@dimen/layout_marginRight"
+        android:maxLines="2"
+        android:text="Title"
+        android:textColor="@color/primaryTextColor"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
+        card_view:layout_constraintTop_toBottomOf="@+id/text_year" />
+
+    <TextView
+        android:id="@+id/text_year"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:text="year"
+        android:textColor="@color/primaryTextColor"
+        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
+        card_view:layout_constraintTop_toTopOf="@+id/image_movie" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginTop="20dp"
+        android:text="@string/deskripsi"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="18sp"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/image_movie" />
+
+    <TextView
+        android:id="@+id/text_description"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="@dimen/layout_marginRight"
+        android:contentDescription="Description movies"
+        android:text="@string/deskripsi"
+        android:textColor="@color/primaryTextColor"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Background detail movies"/>
+        card_view:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <ScrollView
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="100dp"
-        android:scrollbars="none">
+    <TextView
+        android:id="@+id/text_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="8.9"
+        android:textColor="@color/primaryTextColor"
+        card_view:layout_constraintBottom_toBottomOf="@+id/imageView"
+        card_view:layout_constraintStart_toEndOf="@+id/imageView"
+        card_view:layout_constraintTop_toTopOf="@+id/imageView"
+        card_view:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/text_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/bg_chip_blue"
+        android:text="Genre"
+        android:textColor="@color/secondaryTextColor"
+        card_view:layout_constraintBottom_toBottomOf="@+id/text_rating"
+        card_view:layout_constraintStart_toEndOf="@+id/text_rating"
+        card_view:layout_constraintTop_toTopOf="@+id/text_rating"
+        card_view:layout_constraintVertical_bias="0.75" />
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/cardViewId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_rounded_fill"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-
-                    <TextView
-                        android:id="@+id/text_rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="8.9"
-                        android:textColor="@color/primaryTextColor"
-                        card_view:layout_constraintBottom_toBottomOf="@+id/imageView"
-                        card_view:layout_constraintStart_toEndOf="@+id/imageView"
-                        card_view:layout_constraintTop_toTopOf="@+id/imageView"
-                        card_view:layout_constraintVertical_bias="0.0" />
-
-                    <TextView
-                        android:id="@+id/text_title"
-                        style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:maxLines="2"
-                        android:text="Title"
-                        android:textColor="@color/primaryTextColor"
-                        card_view:layout_constraintEnd_toEndOf="parent"
-                        card_view:layout_constraintHorizontal_bias="0.0"
-                        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
-                        card_view:layout_constraintTop_toBottomOf="@+id/text_year" />
-
-                    <TextView
-                        android:id="@+id/text_year"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:text="year"
-                        android:textColor="@color/primaryTextColor"
-                        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
-                        card_view:layout_constraintTop_toTopOf="@+id/image_movie" />
-
-                    <TextView
-                        android:id="@+id/textView"
-                        style="@style/TextAppearance.AppCompat.Body2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/deskripsi"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="18sp"
-                        card_view:layout_constraintTop_toBottomOf="@+id/image_movie"
-                        tools:layout_editor_absoluteX="16dp" />
-
-                    <TextView
-                        android:id="@+id/text_description"
-                        style="@style/TextAppearance.AppCompat.Body1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/deskripsi"
-                        android:textColor="@color/primaryTextColor"
-                        card_view:layout_constraintTop_toBottomOf="@+id/textView"
-                        tools:layout_editor_absoluteX="16dp" />
-
-                    <ImageView
-                        android:id="@+id/image_movie"
-                        android:layout_width="120dp"
-                        android:layout_height="160dp"
-                        android:layout_alignParentTop="true"
-                        android:scaleType="center"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/ic_launcher_background"
-                       />
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_yellow_24dp"
-                        card_view:layout_constraintStart_toEndOf="@+id/image_movie"
-                        card_view:layout_constraintTop_toBottomOf="@+id/text_title"
-                        android:contentDescription="Rating movies"/>
-
-                </android.support.constraint.ConstraintLayout>
-    </ScrollView>
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_detail"
         android:layout_width="match_parent"
@@ -134,16 +127,19 @@
         android:background="#59000000"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/container">
+        card_view:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Title"
             android:id="@+id/textView_toolbar_detail"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:text="Title Movies"
             android:textColor="@color/primaryTextColor" />
     </android.support.v7.widget.Toolbar>
+
+
 </android.support.constraint.ConstraintLayout>
+

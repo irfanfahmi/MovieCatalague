@@ -12,19 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.descolab.moviecatalague.DetailMovies;
+import com.descolab.moviecatalague.DetailMoviesActivity;
 import com.descolab.moviecatalague.R;
 import com.descolab.moviecatalague.model.Movie;
 
 import java.util.ArrayList;
 
 public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.ListMoviesViewHolder> {
-    ArrayList<Movie> movieArrayList;
-    Context context;
-
-    public void setListMoviesAdapter(ArrayList<Movie> movie) {
-        this.movieArrayList = movie;
-    }
+    private ArrayList<Movie> movieArrayList;
+    private Context context;
 
     public ListMoviesAdapter(Context context,ArrayList<Movie> list) {
         this.context = context;
@@ -58,7 +54,7 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detail = new Intent(context, DetailMovies.class);
+                Intent detail = new Intent(context, DetailMoviesActivity.class);
                 detail.putExtra("key_movies", movieArrayList.get(i));
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(detail);
@@ -77,12 +73,12 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
     }
 
     public class ListMoviesViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitle;
-        TextView txtRating;
-        TextView txtYear;
-        TextView txtDescription;
-        ImageView imageViewPhoto;
-        CardView cardViewItem;
+        private TextView txtTitle;
+        private TextView txtRating;
+        private TextView txtYear;
+        private TextView txtDescription;
+        private ImageView imageViewPhoto;
+        private CardView cardViewItem;
 
         public ListMoviesViewHolder(@NonNull View itemView) {
             super(itemView);

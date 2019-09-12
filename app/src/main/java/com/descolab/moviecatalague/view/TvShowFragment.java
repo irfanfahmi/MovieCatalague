@@ -23,8 +23,8 @@ public class TvShowFragment extends Fragment {
     private String[] dataYear;
     private String[] dataDescription;
     private String[] dataPhoto;
-    ArrayList<TvShow> tvShowArrayList;
-    ListTvShowAdapter adapter;
+    private ArrayList<TvShow> tvShowArrayList;
+    private ListTvShowAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
