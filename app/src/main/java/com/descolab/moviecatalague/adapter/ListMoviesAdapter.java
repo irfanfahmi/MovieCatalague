@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,13 +42,15 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
     public void onBindViewHolder(@NonNull final ListMoviesViewHolder holder, final int i) {
         final Movie movie = movieArrayList.get(i);
         holder.txtTitle.setText(movie.getTitle());
-        holder.txtRating.setText(movie.getRating());
-        holder.txtYear.setText(movie.getYear());
-        holder.txtDescription.setText(movie.getDescription());
+        holder.txtRating.setText(movie.getVoteAverage());
+        holder.txtYear.setText(movie.getReleaseDate());
+        holder.txtDescription.setText(movie.getOverview());
 
+        final String url = context.getString(R.string.ip_default_photo)+"w185"+movie.getPosterPath();
+        Log.d("Cek ListAdapter", "onBindViewHolder: Isi URL Photo : "+url);
         Glide
                 .with(holder.itemView.getContext())
-                .load(movie.getPictmovie())
+                .load(url)
                 .centerCrop()
                 .into(holder.imageViewPhoto);
 
@@ -55,7 +58,11 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
             @Override
             public void onClick(View v) {
                 Intent detail = new Intent(context, DetailMoviesActivity.class);
-                detail.putExtra("key_movies", movieArrayList.get(i));
+                detail.putExtra("key_title", movie.getTitle());
+                detail.putExtra("key_rating", movie.getVoteAverage());
+                detail.putExtra("key_realeaseDate", movie.getReleaseDate());
+                detail.putExtra("key_overview", movie.getOverview());
+                detail.putExtra("key_photoPath", url);
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(detail);
             }

@@ -1,21 +1,43 @@
 package com.descolab.moviecatalague.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class Movie {
 
-public class Movie implements Parcelable {
-    private int id;
+    private String id;
     private String title;
-    private String year;
-    private String rating;
-    private String description;
-    private String pictmovie;
+    private String popularity;
+    private String voteCount;
+    private String video;
+    private String posterPath;
+    private String adult;
+    private String backdropPath;
+    private String originalLanguage;
+    private String originalTitle;
+    private String voteAverage;
+    private String overview;
+    private String releaseDate;
 
-    public int getId() {
+    public Movie(String id, String title, String popularity, String voteCount, String video, String posterPath, String adult, String backdropPath, String originalLanguage, String originalTitle, String voteAverage, String overview, String releaseDate) {
+        this.id = id;
+        this.title = title;
+        this.popularity = popularity;
+        this.voteCount = voteCount;
+        this.video = video;
+        this.posterPath = posterPath;
+        this.adult = adult;
+        this.backdropPath = backdropPath;
+        this.originalLanguage = originalLanguage;
+        this.originalTitle = originalTitle;
+        this.voteAverage = voteAverage;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+    }
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -27,74 +49,93 @@ public class Movie implements Parcelable {
         this.title = title;
     }
 
-    public String getYear() {
-        return year;
+    public String getPopularity() {
+        return popularity;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
     }
 
-    public String getRating() {
-        return rating;
+    public String getVoteCount() {
+        return voteCount;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setVoteCount(String voteCount) {
+        this.voteCount = voteCount;
     }
 
-    public String getDescription() {
-        return description;
+    public String getVideo() {
+        return video;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVideo(String video) {
+        this.video = video;
     }
 
-    public String getPictmovie() {
-        return pictmovie;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setPictmovie(String pictmovie) {
-        this.pictmovie = pictmovie;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getAdult() {
+        return adult;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.title);
-        dest.writeString(this.year);
-        dest.writeString(this.rating);
-        dest.writeString(this.description);
-        dest.writeString(this.pictmovie);
+    public void setAdult(String adult) {
+        this.adult = adult;
     }
 
-    public Movie() {
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
-    protected Movie(Parcel in) {
-        this.id = in.readInt();
-        this.title = in.readString();
-        this.year = in.readString();
-        this.rating = in.readString();
-        this.description = in.readString();
-        this.pictmovie = in.readString();
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
-        }
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
 
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public String getVoteAverage() {
+        return voteAverage;
+    }
+
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+
 }

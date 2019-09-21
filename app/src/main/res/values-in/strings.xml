@@ -7,7 +7,7 @@
     <string name="title_activity_tabmovie">tabmovie</string>
     <string name="tab_movies">Film</string>
     <string name="tab_tvshow">Televisi</string>
-
+    <string name="dialog_loading">Tunggu Sebentar...</string>
     <string-array name="data_deskripsi_movies">
         <item>Setelah peristiwa yang menghancurkan dari Avengers: Perang Infinity, alam semesta hancur karena upaya Titan Gila, Thanos. Dengan bantuan sekutu yang tersisa, Avengers harus berkumpul sekali lagi untuk membatalkan tindakan Thanos dan mengembalikan ketertiban ke alam semesta sekali dan untuk semua, tidak peduli apa konsekuensi yang mungkin ada di toko.</item>
         <item>Kisah ini mengikuti Carol Danvers saat ia menjadi salah satu pahlawan paling kuat di alam semesta ketika Bumi terperangkap di tengah perang galaksi antara dua ras alien. Bertempat di tahun 1990-an, Kapten Marvel adalah petualangan yang sepenuhnya baru dari periode yang sebelumnya tidak terlihat dalam sejarah Marvel Cinematic Universe.</item>
@@ -32,4 +32,9 @@
         <item>Sebuah komedi ansambel kamera tunggal mengikuti kehidupan sekelompok detektif eklektik di kantor polisi New York, termasuk seorang pemalas yang dipaksa untuk membentuk ketika dia mendapatkan bos baru.</item>
         <item>Dramatisasi kisah nyata dari salah satu bencana buatan manusia terburuk dalam sejarah, kecelakaan nuklir bencana di Chernobyl. Sebuah kisah tentang pria dan wanita pemberani yang berkorban untuk menyelamatkan Eropa dari bencana yang tak terbayangkan.</item>
     </string-array>
+    <string name="text_error_AuthFailureError">Autentifikasi Error, Coba Kembali</string>
+    <string name="text_error_NetworkError">Jaringan Bermasalah, Coba Kembali</string>
+    <string name="text_error_NoConnectionError">Tidak Ada Koneksi, Coba Kembali</string>
+    <string name="text_error_ParseError">Parsing Data Gagal, Coba Kembali</string>
+    <string name="text_error_ServerError">Server Bermasalah, Coba Kembali</string>
 </resources>

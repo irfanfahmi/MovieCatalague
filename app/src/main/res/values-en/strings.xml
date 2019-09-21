@@ -8,6 +8,7 @@
     <string name="tab_movies">Movies</string>
     <string name="tab_tvshow">TV Show</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_loading">Loading...</string>
     <string-array name="data_deskripsi_movies">
         <item>After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos\' actions and restore order to the universe once and for all, no matter what consequences may be in store.</item>
         <item>The story follows Carol Danvers as she becomes one of the universe\’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.</item>
@@ -32,4 +33,9 @@
         <item>A single-camera ensemble comedy following the lives of an eclectic group of detectives in a New York precinct, including one slacker who is forced to shape up when he gets a new boss.</item>
         <item>A dramatization of the true story of one of the worst man-made catastrophes in history, the catastrophic nuclear accident at Chernobyl. A tale of the brave men and women who sacrificed to save Europe from unimaginable disaster.</item>
     </string-array>
+    <string name="text_error_AuthFailureError">Error Authentication, Please Try Again</string>
+    <string name="text_error_NetworkError">Network errpr, please try again</string>
+    <string name="text_error_NoConnectionError">No Connection, Please Try Again</string>
+    <string name="text_error_ParseError">Data Parsing Bermaslah, please try again</string>
+    <string name="text_error_ServerError">Server Problem, Please Try Again</string>
 </resources>

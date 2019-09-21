@@ -13,7 +13,12 @@ import com.descolab.moviecatalague.model.Movie;
 
 public class DetailMoviesActivity extends AppCompatActivity {
 
-    Movie movies;
+
+    private String title ;
+    private String rating ;
+    private String releasedate ;
+    private String overview ;
+    private String photoPath ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +30,17 @@ public class DetailMoviesActivity extends AppCompatActivity {
         ImageView imgMovies = findViewById(R.id.image_movie);
 
 
-        movies = getIntent().getParcelableExtra("key_movies");
-        txtTitle.setText(movies.getTitle());
-        txtRating.setText(movies.getRating());
-        txtYear.setText(movies.getYear());
-        txtDescription.setText(movies.getDescription());
+        title = getIntent().getStringExtra("key_title");
+        rating = getIntent().getStringExtra("key_rating");
+        releasedate = getIntent().getStringExtra("key_releasedate");
+        overview = getIntent().getStringExtra("key_overview");
+        photoPath = getIntent().getStringExtra("key_photoPath");
+        txtTitle.setText(title);
+        txtRating.setText(rating);
+        txtYear.setText(releasedate);
+        txtDescription.setText(overview);
+//        Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
+
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
@@ -39,15 +50,15 @@ public class DetailMoviesActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
-            textView.setText(movies.getTitle());
+            textView.setText(title);
         }
 
 
-
-        Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
+        //String url = getString(R.string.ip_default_photo)+"w185"+movies.getPosterPath();
+        //Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
         Glide
                 .with(this)
-                .load(movies.getPictmovie())
+                .load(photoPath)
                 .centerCrop()
                 .into(imgMovies);
 

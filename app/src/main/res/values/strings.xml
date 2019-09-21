@@ -3,12 +3,22 @@
     <string name="deskripsi">Deskripsi</string>
     <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
 
+
     <string name="title_activity_tabmovie">tabmovie</string>
     <string name="tab_movies">Film</string>
     <string name="tab_tvshow">Televisi</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_loading">Loading...</string>
+    <string name="api_key_themoviesdb_auth" translatable="false">3237c137cfa54abf20326be8d3988de6</string>
+
+    <string name="ip_default" translatable="false">https://api.themoviedb.org/3/discover/</string>
+    <string name="ip_default_photo" translatable="false">https://image.tmdb.org/t/p/</string>
 
 
+    <string name="text_error_NoConnectionError">Tidak Ada Koneksi, Coba Kembali</string>
+    <string name="text_error_AuthFailureError">Autentifikasi Error, Coba Kembali</string>
+    <string name="text_error_ServerError">Server Bermasalah, Coba Kembali</string>
+    <string name="text_error_NetworkError">Jaringan Bermasalah, Coba Kembali</string>
+    <string name="text_error_ParseError">Parsing Data Gagal, Coba Kembali</string>
 
     <string-array name="data_title_movies">
         <item>Avangers: Endgame</item>
