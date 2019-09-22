@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieCatalague</string>
+    <string name="app_name">List Movies</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
 

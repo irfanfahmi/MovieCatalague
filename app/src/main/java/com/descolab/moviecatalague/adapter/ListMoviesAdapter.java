@@ -3,6 +3,7 @@ package com.descolab.moviecatalague.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.ListMoviesViewHolder> {
     private ArrayList<Movie> movieArrayList;
     private Context context;
+    private String tahun;
 
     public ListMoviesAdapter(Context context,ArrayList<Movie> list) {
         this.context = context;
@@ -42,9 +45,23 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
     public void onBindViewHolder(@NonNull final ListMoviesViewHolder holder, final int i) {
         final Movie movie = movieArrayList.get(i);
         holder.txtTitle.setText(movie.getTitle());
+        Log.d("cek Rating", "onBindViewHolder: "+ movie.getVoteAverage());
+        Log.d("cek Rating", "Hasil : "+ movie.getVoteAverage());
+
+
+        holder.RbRating.setStepSize((float) 0.25);
+        holder.RbRating.setMax(5);
+        float a =  Float.parseFloat(movie.getVoteAverage()) ;
+        float d=  (a*10) /20 ;
+        Log.d("cek Rating", "Hasil hitung: "+d);
+        holder.RbRating.setRating(d);
         holder.txtRating.setText(movie.getVoteAverage());
-        holder.txtYear.setText(movie.getReleaseDate());
+        holder.txtYear.setText(tahun);
         holder.txtDescription.setText(movie.getOverview());
+
+        String year = movie.getReleaseDate();
+        tahun = year.substring(0,4);
+        Log.d("cek YEAR", "onBindViewHolder: "+ tahun);
 
         final String url = context.getString(R.string.ip_default_photo)+"w185"+movie.getPosterPath();
         Log.d("Cek ListAdapter", "onBindViewHolder: Isi URL Photo : "+url);
@@ -81,6 +98,7 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
 
     public class ListMoviesViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle;
+        private AppCompatRatingBar RbRating;
         private TextView txtRating;
         private TextView txtYear;
         private TextView txtDescription;
@@ -90,11 +108,14 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
         public ListMoviesViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.tv_title);
-            txtRating = itemView.findViewById(R.id.tv_rating);
+            RbRating = itemView.findViewById(R.id.rb_rating);
             txtYear = itemView.findViewById(R.id.tv_year);
             txtDescription = itemView.findViewById(R.id.tv_deskripsi);
             imageViewPhoto = itemView.findViewById(R.id.iv_movie);
             cardViewItem = itemView.findViewById(R.id.cardViewItemMovies);
+            txtRating = itemView.findViewById(R.id.tv_rating);
+
+
         }
     }
 }

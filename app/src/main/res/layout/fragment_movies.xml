@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".view.MoviesFragment">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+                android:src="@drawable/bg_rounded_fill_scondary"/>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_movies"

@@ -45,8 +45,8 @@ public class MoviesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getDataMovies();
-
+        progressDialog = new ProgressDialog(getActivity());
+        getDataMovies();
     }
 
     @Override
@@ -58,13 +58,12 @@ public class MoviesFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewMovies.setLayoutManager(layoutManager);
         recyclerViewMovies.setHasFixedSize(true);
-        progressDialog = new ProgressDialog(getActivity());
-        getData();
+
         return view;
     }
 
 
-   private void getData(){
+   private void getDataMovies(){
 
        progressDialog.setMessage(getString(R.string.dialog_loading));
        progressDialog.show();
@@ -106,7 +105,7 @@ public class MoviesFragment extends Fragment {
 
 
                    }
-                   adapter = new ListMoviesAdapter(getActivity().getApplicationContext(), movieArrayList);
+                   adapter = new ListMoviesAdapter(getActivity(), movieArrayList);
 
                    recyclerViewMovies.setAdapter(adapter);
 

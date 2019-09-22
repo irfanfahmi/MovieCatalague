@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#000a12</color>
-    <color name="colorAccent">#90caf9</color>
+    <color name="colorPrimary">#1F2486</color>
+    <color name="colorPrimaryDark">#00003d</color>
+    <color name="colorAccent">#e5280e</color>
     <color name="colorWhite">#fff</color>
     <color name="colorBackgroundDark">#303030</color>
     <color name="colorBackgroundCardView">#424242</color>
-    <color name="primaryColor">#212121</color>
-    <color name="primaryLightColor">#4f5b62</color>
-    <color name="primaryDarkColor">#000a12</color>
-    <color name="secondaryColor">#90caf9</color>
-    <color name="secondaryLightColor">#c3fdff</color>
-    <color name="secondaryDarkColor">#5d99c6</color>
+
+<!--    <color name="primaryColor">#212121</color>-->
+<!--    <color name="primaryLightColor">#4f5b62</color>-->
+<!--    <color name="primaryDarkColor">#000a12</color>-->
+<!--    <color name="secondaryColor">#90caf9</color>-->
+<!--    <color name="secondaryLightColor">#c3fdff</color>-->
+<!--    <color name="secondaryDarkColor">#5d99c6</color>-->
+<!--    <color name="primaryTextColor">#ffffff</color>-->
+<!--    <color name="secondaryTextColor">#000000</color>-->
+    <color name="primaryLightColorState">#CE93D8</color>
+    <color name="primaryColor">#161968</color>
+    <color name="primaryLightColor">#4b4097</color>
+    <color name="primaryDarkColor">#00003d</color>
+    <color name="secondaryColor">#e5280e</color>
+    <color name="secondaryLightColor">#ff633d</color>
+    <color name="secondaryDarkColor">#aa0000</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
 </resources>
