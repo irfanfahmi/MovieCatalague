@@ -38,4 +38,5 @@
     <string name="text_error_NoConnectionError">No Connection, Please Try Again</string>
     <string name="text_error_ParseError">Data Parsing Bermaslah, please try again</string>
     <string name="text_error_ServerError">Server Problem, Please Try Again</string>
+    <string name="txt_release_date">"Release Date"</string>
 </resources>

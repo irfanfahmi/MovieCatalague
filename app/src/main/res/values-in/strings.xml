@@ -37,4 +37,5 @@
     <string name="text_error_NoConnectionError">Tidak Ada Koneksi, Coba Kembali</string>
     <string name="text_error_ParseError">Parsing Data Gagal, Coba Kembali</string>
     <string name="text_error_ServerError">Server Bermasalah, Coba Kembali</string>
+    <string name="txt_release_date">"Tanggal Rilis"</string>
 </resources>

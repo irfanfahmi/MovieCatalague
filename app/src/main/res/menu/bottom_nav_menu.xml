@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/movies_menu"
-        android:title="Movies"
+        android:title="@string/tab_movies"
         android:icon="@drawable/ic_film_white"/>
 
     <item
         android:id="@+id/tvShow_menu"
-        android:title="Tv Show"
+        android:title="@string/tab_tvshow"
         android:icon="@drawable/ic_tv_white"/>
 
 

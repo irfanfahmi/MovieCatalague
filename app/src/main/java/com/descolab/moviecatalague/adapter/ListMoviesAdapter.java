@@ -45,15 +45,10 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
     public void onBindViewHolder(@NonNull final ListMoviesViewHolder holder, final int i) {
         final Movie movie = movieArrayList.get(i);
         holder.txtTitle.setText(movie.getTitle());
-        Log.d("cek Rating", "onBindViewHolder: "+ movie.getVoteAverage());
-        Log.d("cek Rating", "Hasil : "+ movie.getVoteAverage());
-
-
         holder.RbRating.setStepSize((float) 0.25);
         holder.RbRating.setMax(5);
         float a =  Float.parseFloat(movie.getVoteAverage()) ;
-        float d=  (a*10) /20 ;
-        Log.d("cek Rating", "Hasil hitung: "+d);
+        final float d=  (a*10) /20 ;
         holder.RbRating.setRating(d);
         holder.txtRating.setText(movie.getVoteAverage());
         holder.txtYear.setText(tahun);
@@ -61,10 +56,9 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
 
         String year = movie.getReleaseDate();
         tahun = year.substring(0,4);
-        Log.d("cek YEAR", "onBindViewHolder: "+ tahun);
 
         final String url = context.getString(R.string.ip_default_photo)+"w185"+movie.getPosterPath();
-        Log.d("Cek ListAdapter", "onBindViewHolder: Isi URL Photo : "+url);
+        final String urlBackdrop = context.getString(R.string.ip_default_photo)+"w500"+movie.getBackdropPath();
         Glide
                 .with(holder.itemView.getContext())
                 .load(url)
@@ -80,6 +74,9 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
                 detail.putExtra("key_realeaseDate", movie.getReleaseDate());
                 detail.putExtra("key_overview", movie.getOverview());
                 detail.putExtra("key_photoPath", url);
+                detail.putExtra("key_photoBack",urlBackdrop);
+                detail.putExtra("key_rbRating", d);
+
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(detail);
             }

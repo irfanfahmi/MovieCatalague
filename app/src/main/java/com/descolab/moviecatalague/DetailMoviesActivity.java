@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +20,8 @@ public class DetailMoviesActivity extends AppCompatActivity {
     private String releasedate ;
     private String overview ;
     private String photoPath ;
+    private String photoBack ;
+    private String valueRating ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,20 +29,28 @@ public class DetailMoviesActivity extends AppCompatActivity {
         TextView txtTitle = findViewById(R.id.text_title);
         TextView txtRating = findViewById(R.id.text_rating);
         TextView txtYear = findViewById(R.id.text_year);
+        RatingBar rbRating = findViewById(R.id.rb_rating);
         TextView txtDescription = findViewById(R.id.text_description);
         ImageView imgMovies = findViewById(R.id.image_movie);
+        ImageView imgMoviesback = findViewById(R.id.image_background);
 
 
         title = getIntent().getStringExtra("key_title");
         rating = getIntent().getStringExtra("key_rating");
-        releasedate = getIntent().getStringExtra("key_releasedate");
+        releasedate = getIntent().getStringExtra("key_realeaseDate");
         overview = getIntent().getStringExtra("key_overview");
         photoPath = getIntent().getStringExtra("key_photoPath");
+        photoBack = getIntent().getStringExtra("key_photoBack");
+        valueRating = getIntent().getStringExtra("key_rbRating");
+
         txtTitle.setText(title);
         txtRating.setText(rating);
-        txtYear.setText(releasedate);
+        txtYear.setText(getApplicationContext().getString(R.string.txt_release_date)+" : "+releasedate);
         txtDescription.setText(overview);
-//        Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
+
+        float a =  Float.parseFloat(rating) ;
+        final float d=  (a*10) /20 ;
+        rbRating.setRating(d);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
@@ -61,6 +72,12 @@ public class DetailMoviesActivity extends AppCompatActivity {
                 .load(photoPath)
                 .centerCrop()
                 .into(imgMovies);
+
+        Glide
+                .with(this)
+                .load(photoBack)
+                .centerCrop()
+                .into(imgMoviesback);
 
     }
 

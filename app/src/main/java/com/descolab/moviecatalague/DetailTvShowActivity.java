@@ -12,25 +12,31 @@ import com.bumptech.glide.Glide;
 import com.descolab.moviecatalague.model.TvShow;
 
 public class DetailTvShowActivity extends AppCompatActivity {
-
+    private String title ;
+    private String rating ;
+    private String releasedate ;
+    private String overview ;
+    private String photoPath ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_tvshow);
         TextView txtTitle = findViewById(R.id.text_title);
         TextView txtRating = findViewById(R.id.text_rating);
-        TextView txtGenre = findViewById(R.id.text_genre);
         TextView txtYear = findViewById(R.id.text_year);
         TextView txtDescription = findViewById(R.id.text_description);
         ImageView imgMovies = findViewById(R.id.image_movie);
 
 
-        TvShow tvshow = getIntent().getParcelableExtra("key_tvshow");
-        txtTitle.setText(tvshow.getTitle());
-        txtRating.setText(tvshow.getRating());
-        txtGenre.setText(tvshow.getGenre());
-        txtYear.setText(tvshow.getYear());
-        txtDescription.setText(tvshow.getDescription());
+        title = getIntent().getStringExtra("key_title");
+        rating = getIntent().getStringExtra("key_rating");
+        releasedate = getIntent().getStringExtra("key_releasedate");
+        overview = getIntent().getStringExtra("key_overview");
+        photoPath = getIntent().getStringExtra("key_photoPath");
+        txtTitle.setText(title);
+        txtRating.setText(rating);
+        txtYear.setText(releasedate);
+        txtDescription.setText(overview);
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
@@ -40,13 +46,13 @@ public class DetailTvShowActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             TextView textView = toolbar.findViewById(R.id.textView_toolbar_detail);
-            textView.setText(tvshow.getTitle());
+            textView.setText(title);
         }
 
-        Log.d("DetailActivity", "onCreate: Cek isi Title " + tvshow.getTitle());
+        Log.d("DetailActivity", "onCreate: Cek isi Title " + title);
         Glide
                 .with(this)
-                .load(tvshow.getPicttv())
+                .load(photoPath)
                 .centerCrop()
                 .into(imgMovies);
 

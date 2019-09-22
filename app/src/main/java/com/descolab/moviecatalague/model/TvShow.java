@@ -3,20 +3,23 @@ package com.descolab.moviecatalague.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TvShow implements Parcelable {
-    private int id;
+public class TvShow {
+    private String id;
     private String title;
-    private String year;
-    private String rating;
-    private String genre;
-    private String description;
-    private String picttv;
+    private String popularity;
+    private String voteCount;
+    private String posterPath;
+    private String backdropPath;
+    private String originalLanguage;
+    private String voteAverage;
+    private String overview;
+    private String releaseDate;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,84 +31,83 @@ public class TvShow implements Parcelable {
         this.title = title;
     }
 
-    public String getYear() {
-        return year;
+    public String getPopularity() {
+        return popularity;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
     }
 
-    public String getRating() {
-        return rating;
+    public String getVoteCount() {
+        return voteCount;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setVoteCount(String voteCount) {
+        this.voteCount = voteCount;
     }
 
-    public String getDescription() {
-        return description;
+
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
-    public String getGenre() {
-        return genre;
+
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 
-    public String getPicttv() {
-        return picttv;
+    public String getOriginalLanguage() {
+        return originalLanguage;
     }
 
-    public void setPicttv(String picttv) {
-        this.picttv = picttv;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+
+    public String getVoteAverage() {
+        return voteAverage;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.title);
-        dest.writeString(this.year);
-        dest.writeString(this.rating);
-        dest.writeString(this.genre);
-        dest.writeString(this.description);
-        dest.writeString(this.picttv);
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public TvShow() {
+    public String getOverview() {
+        return overview;
     }
 
-    protected TvShow(Parcel in) {
-        this.id = in.readInt();
-        this.title = in.readString();
-        this.year = in.readString();
-        this.rating = in.readString();
-        this.genre = in.readString();
-        this.description = in.readString();
-        this.picttv = in.readString();
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
-        @Override
-        public TvShow createFromParcel(Parcel source) {
-            return new TvShow(source);
-        }
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
-        @Override
-        public TvShow[] newArray(int size) {
-            return new TvShow[size];
-        }
-    };
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public TvShow(String id, String title, String popularity, String voteCount, String posterPath, String backdropPath, String originalLanguage, String voteAverage, String overview, String releaseDate) {
+        this.id = id;
+        this.title = title;
+        this.popularity = popularity;
+        this.voteCount = voteCount;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+        this.originalLanguage = originalLanguage;
+        this.voteAverage = voteAverage;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+    }
 }

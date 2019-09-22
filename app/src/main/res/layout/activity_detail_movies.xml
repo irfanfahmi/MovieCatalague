@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardViewId"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackgroundCardView"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cardViewId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="#80E7D5D5"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/toolbar_detail" />
 
     <ImageView
         android:id="@+id/image_movie"
         android:layout_width="120dp"
         android:layout_height="160dp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/layout_marginLeft"
-        android:layout_marginTop="@dimen/layout_marginTop"
-        android:layout_marginRight="@dimen/layout_marginRight"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="100dp"
         android:scaleType="center"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/toolbar_detail"
         tools:src="@drawable/ic_launcher_background" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <android.support.v7.widget.AppCompatRatingBar
+        android:id="@+id/rb_rating"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_star_yellow_24dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="3.55"
+        android:stepSize="0.25"
         card_view:layout_constraintStart_toEndOf="@+id/image_movie"
         card_view:layout_constraintTop_toBottomOf="@+id/text_title" />
 
@@ -39,16 +57,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="@dimen/layout_marginRight"
         android:maxLines="2"
         android:text="Title"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryColor"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintHorizontal_bias="0.0"
         card_view:layout_constraintStart_toEndOf="@+id/image_movie"
-        card_view:layout_constraintTop_toBottomOf="@+id/text_year" />
+        card_view:layout_constraintTop_toBottomOf="@+id/image_background" />
 
     <TextView
         android:id="@+id/text_year"
@@ -56,11 +74,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="@dimen/layout_marginLeft"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="year"
-        android:textColor="@color/primaryTextColor"
+        android:textSize="12sp"
+        android:textColor="@color/primaryColor"
         card_view:layout_constraintStart_toEndOf="@+id/image_movie"
-        card_view:layout_constraintTop_toTopOf="@+id/image_movie" />
+        card_view:layout_constraintTop_toBottomOf="@+id/rb_rating" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,7 +91,7 @@
         android:layout_marginLeft="@dimen/layout_marginLeft"
         android:layout_marginTop="20dp"
         android:text="@string/deskripsi"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryColor"
         android:textSize="18sp"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/image_movie" />
@@ -88,7 +108,7 @@
         android:layout_marginRight="@dimen/layout_marginRight"
         android:contentDescription="Description movies"
         android:text="@string/deskripsi"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/primaryColor"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -100,13 +120,15 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:text="8.9"
-        android:textColor="@color/primaryTextColor"
-        card_view:layout_constraintBottom_toBottomOf="@+id/imageView"
-        card_view:layout_constraintStart_toEndOf="@+id/imageView"
-        card_view:layout_constraintTop_toTopOf="@+id/imageView"
+        android:textSize="11sp"
+        android:textColor="@color/primaryColor"
+        card_view:layout_constraintBottom_toBottomOf="@+id/rb_rating"
+        card_view:layout_constraintStart_toEndOf="@+id/rb_rating"
+        card_view:layout_constraintTop_toTopOf="@+id/rb_rating"
         card_view:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/text_genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +146,7 @@
         android:id="@+id/toolbar_detail"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="#59000000"
+        android:background="#00FFFFFF"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toTopOf="parent">
@@ -140,6 +162,5 @@
             android:textColor="@color/primaryTextColor" />
     </android.support.v7.widget.Toolbar>
 
-
 </android.support.constraint.ConstraintLayout>
-
+</ScrollView>

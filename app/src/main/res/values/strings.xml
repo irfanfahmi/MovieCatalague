@@ -10,7 +10,10 @@
     <string name="dialog_loading">Loading...</string>
     <string name="api_key_themoviesdb_auth" translatable="false">3237c137cfa54abf20326be8d3988de6</string>
 
+    <string name="txt_release_date">Release Date</string>
+
     <string name="ip_default" translatable="false">https://api.themoviedb.org/3/discover/</string>
+    <string name="ip_base_url" translatable="false">https://api.themoviedb.org/3/</string>
     <string name="ip_default_photo" translatable="false">https://image.tmdb.org/t/p/</string>
 
 
