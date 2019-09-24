@@ -24,9 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.descolab.moviecatalague.R;
-import com.descolab.moviecatalague.adapter.ListMoviesAdapter;
 import com.descolab.moviecatalague.adapter.ListTvShowAdapter;
-import com.descolab.moviecatalague.model.Movie;
 import com.descolab.moviecatalague.model.TvShow;
 
 import org.json.JSONArray;
@@ -70,19 +68,20 @@ public class TvShowFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getActivity());
 
-        String url = getString(R.string.ip_default)+"tv?api_key="+getString(R.string.api_key_themoviesdb_auth)+"&language=en-US";
-        Log.d("Cek URL ", "URL GET TV: "+url);
+        String url = getString(R.string.ip_default) + "tv?api_key=" + getString(R.string.api_key_themoviesdb_auth) + "&language=en-US";
+        Log.d("Cek URL ", "URL GET TV: " + url);
 
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override public void onResponse(String response) {
-                Log.d("Cek", "onResponse: "+response);
+            @Override
+            public void onResponse(String response) {
+                Log.d("Cek", "onResponse: " + response);
                 progressDialog.dismiss();
 
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray jsonArray = obj.getJSONArray("results");
-                    for (int a = 0; a < jsonArray.length(); a ++){
+                    for (int a = 0; a < jsonArray.length(); a++) {
                         JSONObject json = jsonArray.getJSONObject(a);
 
                         TvShow data = new TvShow(
@@ -112,7 +111,8 @@ public class TvShowFragment extends Fragment {
                 }
             }
         }, new Response.ErrorListener() {
-            @Override public void onErrorResponse(VolleyError error) {
+            @Override
+            public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {

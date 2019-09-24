@@ -6,12 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,7 +24,7 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
     private Context context;
     private String tahun;
 
-    public ListMoviesAdapter(Context context,ArrayList<Movie> list) {
+    public ListMoviesAdapter(Context context, ArrayList<Movie> list) {
         this.context = context;
         this.movieArrayList = list;
     }
@@ -47,22 +45,23 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
         holder.txtTitle.setText(movie.getTitle());
         holder.RbRating.setStepSize((float) 0.25);
         holder.RbRating.setMax(5);
-        float a =  Float.parseFloat(movie.getVoteAverage()) ;
-        final float d=  (a*10) /20 ;
+        float a = Float.parseFloat(movie.getVoteAverage());
+        final float d = (a * 10) / 20;
         holder.RbRating.setRating(d);
         holder.txtRating.setText(movie.getVoteAverage());
         holder.txtYear.setText(tahun);
         holder.txtDescription.setText(movie.getOverview());
 
         String year = movie.getReleaseDate();
-        tahun = year.substring(0,4);
+        tahun = year.substring(0, 4);
 
-        final String url = context.getString(R.string.ip_default_photo)+"w185"+movie.getPosterPath();
-        final String urlBackdrop = context.getString(R.string.ip_default_photo)+"w500"+movie.getBackdropPath();
+        final String url = context.getString(R.string.ip_default_photo) + "w185" + movie.getPosterPath();
+        final String urlBackdrop = context.getString(R.string.ip_default_photo) + "w500" + movie.getBackdropPath();
         Glide
                 .with(holder.itemView.getContext())
                 .load(url)
                 .centerCrop()
+                .placeholder(R.drawable.no_image)
                 .into(holder.imageViewPhoto);
 
         holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +73,7 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
                 detail.putExtra("key_realeaseDate", movie.getReleaseDate());
                 detail.putExtra("key_overview", movie.getOverview());
                 detail.putExtra("key_photoPath", url);
-                detail.putExtra("key_photoBack",urlBackdrop);
+                detail.putExtra("key_photoBack", urlBackdrop);
                 detail.putExtra("key_rbRating", d);
 
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

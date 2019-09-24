@@ -3,25 +3,24 @@ package com.descolab.moviecatalague;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.descolab.moviecatalague.model.Movie;
 
 public class DetailMoviesActivity extends AppCompatActivity {
 
 
-    private String title ;
-    private String rating ;
-    private String releasedate ;
-    private String overview ;
-    private String photoPath ;
-    private String photoBack ;
-    private String valueRating ;
+    private String title;
+    private String rating;
+    private String releasedate;
+    private String overview;
+    private String photoPath;
+    private String photoBack;
+    private String valueRating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +44,17 @@ public class DetailMoviesActivity extends AppCompatActivity {
 
         txtTitle.setText(title);
         txtRating.setText(rating);
-        txtYear.setText(getApplicationContext().getString(R.string.txt_release_date)+" : "+releasedate);
+        txtYear.setText(getApplicationContext().getString(R.string.txt_release_date) + " : " + releasedate);
         txtDescription.setText(overview);
 
-        float a =  Float.parseFloat(rating) ;
-        final float d=  (a*10) /20 ;
+        float a = Float.parseFloat(rating);
+        final float d = (a * 10) / 20;
         rbRating.setRating(d);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
@@ -65,18 +64,18 @@ public class DetailMoviesActivity extends AppCompatActivity {
         }
 
 
-        //String url = getString(R.string.ip_default_photo)+"w185"+movies.getPosterPath();
-        //Log.d("DetailActivity", "onCreate: Cek isi Title " + movies.getTitle());
         Glide
                 .with(this)
                 .load(photoPath)
                 .centerCrop()
+                .placeholder(R.drawable.no_image)
                 .into(imgMovies);
 
         Glide
                 .with(this)
                 .load(photoBack)
                 .centerCrop()
+                .placeholder(R.drawable.no_image)
                 .into(imgMoviesback);
 
     }

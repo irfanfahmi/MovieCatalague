@@ -45,22 +45,24 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
         holder.txtTitle.setText(tvShow.getTitle());
         holder.txtRating.setText(tvShow.getVoteAverage());
         String year = tvShow.getReleaseDate();
-        tahun = year.substring(0,4);
+        tahun = year.substring(0, 4);
 
         holder.RbRating.setStepSize((float) 0.25);
         holder.RbRating.setMax(5);
-        float a =  Float.parseFloat(tvShow.getVoteAverage()) ;
-        float d=  (a*10) /20 ;
+        float a = Float.parseFloat(tvShow.getVoteAverage());
+        final float d = (a * 10) / 20;
 
         holder.RbRating.setRating(d);
         holder.txtRating.setText(tvShow.getVoteAverage());
         holder.txtYear.setText(tahun);
         holder.txtDescription.setText(tvShow.getOverview());
-        final String url = context.getString(R.string.ip_default_photo)+"w185"+tvShow.getPosterPath();
+        final String url = context.getString(R.string.ip_default_photo) + "w185" + tvShow.getPosterPath();
+        final String urlBackdrop = context.getString(R.string.ip_default_photo) + "w500" + tvShow.getBackdropPath();
 
         Glide
                 .with(holder.itemView.getContext())
                 .load(url)
+                .placeholder(R.drawable.no_image)
                 .centerCrop()
                 .into(holder.imageViewPhoto);
 
@@ -73,6 +75,8 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
                 detail.putExtra("key_realeaseDate", tvShow.getReleaseDate());
                 detail.putExtra("key_overview", tvShow.getOverview());
                 detail.putExtra("key_photoPath", url);
+                detail.putExtra("key_photoBack", urlBackdrop);
+                detail.putExtra("key_rbRating", d);
                 detail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(detail);
             }
