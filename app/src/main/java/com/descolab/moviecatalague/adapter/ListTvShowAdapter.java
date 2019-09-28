@@ -29,6 +29,10 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
         this.tvShowArrayList = list;
     }
 
+    public ListTvShowAdapter(ArrayList<TvShow> tvShowArrayList) {
+        this.tvShowArrayList = tvShowArrayList;
+    }
+
     @NonNull
     @Override
     public ListTvShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -91,6 +95,12 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Li
             return tvShowArrayList.size();
         }
         return 0;
+    }
+
+    public void refill(ArrayList<TvShow> items) {
+        this.tvShowArrayList = new ArrayList<>();
+        this.tvShowArrayList.addAll(items);
+        notifyDataSetChanged();
     }
 
     public class ListTvShowViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,8 @@ package com.descolab.moviecatalague.view;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 import com.descolab.moviecatalague.R;
 import com.descolab.moviecatalague.adapter.ListTvShowAdapter;
 import com.descolab.moviecatalague.model.TvShow;
+import com.descolab.moviecatalague.model.TvShowResponse;
+import com.descolab.moviecatalague.model.TvShowSourcesCallBack;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,33 +38,77 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class TvShowFragment extends Fragment {
+public class TvShowFragment extends Fragment implements TvShowSourcesCallBack {
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
     private ProgressDialog progressDialog;
     private RecyclerView recyclerViewTvShow;
     private ArrayList<TvShow> tvShowArrayList = new ArrayList<TvShow>();
     private ListTvShowAdapter adapter;
+    private String KEY_TVSHOW = "TvShow";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(getActivity());
-        getDataTv();
+
+    public TvShowFragment() {
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_tv_show, container, false);
-        recyclerViewTvShow = view.findViewById(R.id.rv_tvmovies);
+        progressDialog = new ProgressDialog(getActivity());
+        getDataTv();
+        adapter = new ListTvShowAdapter(tvShowArrayList);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerViewTvShow = view.findViewById(R.id.rv_tvshow);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewTvShow.setLayoutManager(layoutManager);
         recyclerViewTvShow.setHasFixedSize(true);
 
 
-        return view;
     }
+
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+
+            tvShowArrayList = savedInstanceState.getParcelableArrayList(KEY_TVSHOW);
+            adapter.refill(tvShowArrayList);
+            progressDialog.dismiss();
+        } else {
+
+            getDataTv();
+            progressDialog.dismiss();
+
+        }
+    }
+
+    @Override
+    public void onSuccess(TvShowResponse tvShowResponse) {
+        tvShowArrayList = tvShowResponse.getResults();
+        adapter.refill(tvShowArrayList);
+    }
+
+    @Override
+    public void onFailed(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        //Save the fragment's state here
+        outState.putParcelableArrayList(KEY_TVSHOW, new ArrayList<>(tvShowArrayList));
+        super.onSaveInstanceState(outState);
+
+    }
+
 
     private void getDataTv() {
         progressDialog.setMessage(getString(R.string.dialog_loading));
@@ -69,13 +117,13 @@ public class TvShowFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(getActivity());
 
         String url = getString(R.string.ip_default) + "tv?api_key=" + getString(R.string.api_key_themoviesdb_auth) + "&language=en-US";
-        Log.d("Cek URL ", "URL GET TV: " + url);
+        Log.d("Cek URL ", "URL GET Data TV: " + url);
 
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("Cek", "onResponse: " + response);
+                // Log.d("Cek", "onResponse: " + response);
                 progressDialog.dismiss();
 
                 try {
@@ -102,7 +150,7 @@ public class TvShowFragment extends Fragment {
 
                     }
                     adapter = new ListTvShowAdapter(getActivity(), tvShowArrayList);
-
+                    adapter.notifyDataSetChanged();
                     recyclerViewTvShow.setAdapter(adapter);
 
 

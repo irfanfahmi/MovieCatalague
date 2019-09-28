@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,6 +16,9 @@ import com.descolab.moviecatalague.view.MoviesFragment;
 import com.descolab.moviecatalague.view.TvShowFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private Fragment defaultPage = new MoviesFragment();
+
+    private String KEY_FRAGMENT = "fragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +29,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (myToolbar != null) {
             setSupportActionBar(myToolbar);
         }
-        loadFragment(new MoviesFragment());
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, defaultPage).commit();
+
+        } else {
+            Log.d("MainActivity", "onCreate: savedinstance ");
+            defaultPage = getSupportFragmentManager().getFragment(savedInstanceState, KEY_FRAGMENT);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, defaultPage).commit();
+
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, KEY_FRAGMENT, defaultPage);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -60,16 +81,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Fragment fragment = null;
+
         switch (menuItem.getItemId()) {
             case R.id.movies_menu:
-                fragment = new MoviesFragment();
+                defaultPage = new MoviesFragment();
                 break;
             case R.id.tvShow_menu:
-                fragment = new TvShowFragment();
+                defaultPage = new TvShowFragment();
                 break;
         }
-        return loadFragment(fragment);
+        return loadFragment(defaultPage);
     }
 
     @Override

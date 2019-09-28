@@ -3,7 +3,7 @@ package com.descolab.moviecatalague.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TvShow {
+public class TvShow implements Parcelable {
     private String id;
     private String title;
     private String popularity;
@@ -14,6 +14,31 @@ public class TvShow {
     private String voteAverage;
     private String overview;
     private String releaseDate;
+
+    TvShow(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        popularity = in.readString();
+        voteCount = in.readString();
+        posterPath = in.readString();
+        backdropPath = in.readString();
+        originalLanguage = in.readString();
+        voteAverage = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+    }
+
+    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
+        @Override
+        public TvShow createFromParcel(Parcel in) {
+            return new TvShow(in);
+        }
+
+        @Override
+        public TvShow[] newArray(int size) {
+            return new TvShow[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -109,5 +134,25 @@ public class TvShow {
         this.voteAverage = voteAverage;
         this.overview = overview;
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(popularity);
+        dest.writeString(voteCount);
+        dest.writeString(posterPath);
+        dest.writeString(backdropPath);
+        dest.writeString(originalLanguage);
+        dest.writeString(voteAverage);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+
     }
 }

@@ -29,6 +29,10 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
         this.movieArrayList = list;
     }
 
+    public ListMoviesAdapter(ArrayList<Movie> movieArrayList) {
+        this.movieArrayList = movieArrayList;
+    }
+
     @NonNull
     @Override
     public ListMoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -90,6 +94,12 @@ public class ListMoviesAdapter extends RecyclerView.Adapter<ListMoviesAdapter.Li
             return movieArrayList.size();
         }
         return 0;
+    }
+
+    public void refill(ArrayList<Movie> items) {
+        this.movieArrayList = new ArrayList<>();
+        this.movieArrayList.addAll(items);
+        notifyDataSetChanged();
     }
 
     public class ListMoviesViewHolder extends RecyclerView.ViewHolder {

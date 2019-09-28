@@ -3,6 +3,8 @@ package com.descolab.moviecatalague.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +30,8 @@ import com.android.volley.toolbox.Volley;
 import com.descolab.moviecatalague.R;
 import com.descolab.moviecatalague.adapter.ListMoviesAdapter;
 import com.descolab.moviecatalague.model.Movie;
+import com.descolab.moviecatalague.model.MoviesResponse;
+import com.descolab.moviecatalague.model.MoviesSourcesCallBack;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +40,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, MoviesSourcesCallBack {
     private ArrayList<Movie> movieArrayList = new ArrayList<Movie>();
     private ListMoviesAdapter adapter;
     private RequestQueue requestQueue;
@@ -45,26 +49,45 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private RecyclerView recyclerViewMovies;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private LinearLayoutManager layoutManager;
+    private String KEY_MOVIES = "movies";
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(getActivity());
+    public MoviesFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         final View view = inflater.inflate(R.layout.fragment_movies, container, false);
-        recyclerViewMovies = view.findViewById(R.id.rv_movies);
+        progressDialog = new ProgressDialog(getActivity());
+        getData();
+        adapter = new ListMoviesAdapter(movieArrayList);
+        return view;
+    }
 
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            movieArrayList = savedInstanceState.getParcelableArrayList(KEY_MOVIES);
+            adapter.refill(movieArrayList);
+            progressDialog.dismiss();
+        } else {
+            getData();
+            progressDialog.dismiss();
+
+        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerViewMovies = view.findViewById(R.id.rv_movies);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewMovies.setLayoutManager(layoutManager);
         recyclerViewMovies.setHasFixedSize(true);
-        getData();
         mSwipeRefreshLayout = view.findViewById(R.id.swiperefresh_items);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.primaryColor);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -84,7 +107,26 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         });
 
-        return view;
+
+    }
+
+
+    @Override
+    public void onSuccess(MoviesResponse movieResponse) {
+        movieArrayList = movieResponse.getResults();
+        adapter.refill(movieArrayList);
+    }
+
+    @Override
+    public void onFailed(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        //Save the fragment's state here
+        outState.putParcelableArrayList(KEY_MOVIES, movieArrayList);
+        super.onSaveInstanceState(outState);
     }
 
     private void getData() {
@@ -96,13 +138,13 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
         requestQueue = Volley.newRequestQueue(getActivity());
 
         String url = getString(R.string.ip_default) + "movie?api_key=" + getString(R.string.api_key_themoviesdb_auth) + "&language=en-US";
-        Log.d("Cek URL ", "URL GET MOVIE: " + url);
+        Log.d("Cek URL ", "URL GETData fragment MOVIE: " + url);
 
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("Cek", "onResponse: " + response);
+                //Log.d("Cek", "onResponse: " + response);
                 progressDialog.dismiss();
 
                 try {
@@ -132,7 +174,7 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
                     }
                     adapter = new ListMoviesAdapter(getActivity(), movieArrayList);
-
+                    adapter.notifyDataSetChanged();
                     recyclerViewMovies.setAdapter(adapter);
 
 
@@ -173,13 +215,13 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
         requestQueue = Volley.newRequestQueue(getActivity());
 
         String url = getString(R.string.ip_default) + "movie?api_key=" + getString(R.string.api_key_themoviesdb_auth) + "&language=en-US";
-        Log.d("Cek URL ", "URL GET MOVIE: " + url);
+        Log.d("Cek URL ", "URL GetRefres fragment MOVIE: " + url);
 
 
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("Cek", "onResponse: " + response);
+                //Log.d("Cek", "onResponse: " + response);
                 progressDialog.dismiss();
 
                 try {
@@ -209,7 +251,7 @@ public class MoviesFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
                     }
                     adapter = new ListMoviesAdapter(getActivity(), movieArrayList);
-
+                    adapter.notifyDataSetChanged();
                     recyclerViewMovies.setAdapter(adapter);
 
 
